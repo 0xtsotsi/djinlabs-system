@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-5 hebben vastgelegd
+## Canon in context — wat Ronde 1-6 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
