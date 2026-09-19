@@ -32,3 +32,26 @@ request to the default branch. Keep it green.
   issue rather than bypassing it.
 - Do not force-push to the default branch; the ruleset enforces
   non-fast-forward.
+
+## Umbrella router
+
+This repository is structured as an **umbrella workspace** with two ondernemingen (per the DjinLabs × Webrnds template; see `decisions.md` for the cumulative grill-me log). The umbrella router below complements — does not replace — the project-state guidance above.
+
+- `/djinlabs/` — onderneming #1: template-onderhoud. Sub-router: `/djinlabs/AGENTS.md`.
+- `/webrnds/` — onderneming #2: klantreis-uitvoering. Sub-router: `/webrnds/AGENTS.md`.
+- `/_shared/` — canonieke bronnen gedeeld door beide ondernemingen (hard-rules, naming-conventions, icm-canon).
+
+**ICM-discipline (verplicht):**
+- Elke werk-folder (workspace, klantreis, klant, fase) heeft precies één `CONTEXT.md` als contract: inputs/process/outputs/human check.
+- Per-run artifacts dragen `review_status: pending|reviewed` in YAML-frontmatter.
+- Stable rules in `/_shared/` of `/<instance>/_internal/`; per-run artifacts in de product-folders.
+- Root-routers (dit bestand + de twee sub-routers) blijven onder ~60 regels. Diepere inhoud hoort in `CONTEXT.md`-bestanden.
+
+**Routing:**
+
+| Task | Go to | Read |
+|------|-------|------|
+| Onderhoud aan het DjinLabs-template | `/djinlabs/` | `AGENTS.md` |
+| Werk voor een Webrnds-klant | `/webrnds/clients/<slug>/` | `start.md` + de juiste `klantreis-<id>/<fase>/CONTEXT.md` |
+| Canonieke bronnen (hard-rules, naming, ICM-canon) | `/_shared/` | de file zelf |
+| Vraag over beslissingen-log | `/decisions.md` | — |
