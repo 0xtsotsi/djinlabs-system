@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-6 locked. Ronde 7 open.
+> **Status.** Ronde 1-7 locked. Ronde 8 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-6 hebben vastgelegd
+## Canon in context — wat Ronde 1-7 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
@@ -26,8 +26,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 4 | Wie is de tweede instance | Founder beslist, eigen tempo, niet klant-getrokken |
 | 5 | Welke agent + welke architectuur voor tweede Jev-wire-up | `/money` (Q13-A) via `writeWrapper` (Q14-A); fail-CLOSED in tegenstelling tot Q10/U3 |
 | 6 | Money-subdirectories: wél vs niet afgeleid | Drie derivates (`Bank`, `Factuur`, `Belasting`); `Offerte` pass-through; `_internal/` hard-excluded; namen in NL |
+| 7 | Audit-grader: Jev `Score` ja/nee | Nee voor eerste wire-up — deterministisch blijft primary; Score pas als checks > 5 of diverge optreedt |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 7+ (score-grader, post-HOLD, Ronde 14+ uit `decisions.md`) staat onderin deze doc bij "Open frontier — Ronde 7+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 8+ (post-HOLD, Ronde 14+ uit `decisions.md`, Money-meta) staat onderin deze doc bij "Open frontier — Ronde 8+".
 
 ## Termen
 
@@ -191,11 +192,20 @@ writeWrapper-vangst (Q14-A) toegepast op `Money/`-paden. Drie **wrapped** deriva
 
 **Geen registry-bestand voorlopig** — pas zinvol bij > 5 derivates; nu hard-coded, vier paden totaal.
 
-## Open frontier — Ronde 7+
+### Audit-grader (Q16)
+**Primary grader: deterministisch** (Q8). Jev `Score` is **niet** actief in de eerste wire-up. Score is een R&D-spoor — activering pas bij een van:
 
-Kandidaten die voortbouwen op Ronde 6:
+- actieve audit-checks > 5 (nu 4: U2, U3, U7, U8);
+- echte diverge in een audit-run die deterministisch niet vangt;
+- Jev-kalibratie vanuit parallelle runs (kan buiten canon).
 
-- **Audit-grader via Jev `Score`** — Q8 gebruikt deterministische checks. Parallel: Jev `Score` als tweede grader, of vervanging? (Risico: verborgen drift als Score divergéert van waarheid.)
-- **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
+**Rollback-pad**: mocht deterministisch te smal blijken, volgende stap is **parallel** (Score naast, niet in plaats van) — nooit vervanger. Score-onder-de-deterministische-grader verliest mens-traceerbaarheid van de canon.
+
+## Open frontier — Ronde 8+
+
+Kandidaten die voortbouwen op Ronde 7:
+
 - **Post-HOLD-werkverdeling** — als Q14 writeWrapper universiek wordt, hoe gedragen we ons bij mislukte `Choice` na HOLD? Auto-retry? Mens-ping? Scheduled re-review?
+- **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
+- **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
