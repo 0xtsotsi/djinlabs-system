@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-9 locked. Ronde 10 open.
+> **Status.** Ronde 1-10 locked. Ronde 11 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-9 hebben vastgelegd
+## Canon in context — wat Ronde 1-10 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
@@ -29,8 +29,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 7 | Audit-grader: Jev `Score` ja/nee | Nee voor eerste wire-up — deterministisch blijft primary; Score pas als checks > 5 of diverge optreedt |
 | 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunday-audit, HOLD=direct-ping; geen auto-retry |
 | 9 | Openings-vraag bredere-werk volgorde | agent-mapping eerst (Q18-A): skills-hosting verwijst naar agents, Money-discipline wordt uitgevoerd door agents — deps in de topologie dwingen deze volgorde af |
+| 10 | Agent-mapping topologie | Drie lagen canon / venture / klant (Q19-A): klant erft venture erft canon; eigenaarschap + discovery-mechaniek per laag |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 10+ (skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier — Ronde 10+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 11+ (skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier — Ronde 11+".
 
 ## Termen
 
@@ -216,12 +217,23 @@ Hybrid-routing per verdict — semantisch onderscheid tussen **twijfel** en **af
 
 **Compositie van twee bestaande patronen** (Steroids-referentie: Deuz-SDK `examples/03-next-chat/` toont single-loop ping-and-wait voor de HOLD-route; batch-review-cron is de REJECT-route). DjinLabs-specifiek is de **verdict-gebaseerde routering** tussen deze twee — compositie, geen invention.
 
-## Open frontier — Ronde 10+
+### Agent-mapping topologie (Q19)
+Drie lagen, strikte hierarchie (klant erft venture erft canon). Eigenaarschap + discovery-mechaniek per laag:
 
-Kandidaten die voortbouwen op Ronde 9 (agent-mapping eerst):
+| Laag | Eigenaarschap | Discovery |
+|---|---|---|
+| **canon** | DjinLabs-template-leverancier (founder); lijst vast, niet-onderhandelbaar | via 1-folder canon-symlinks; geen runtime discovery |
+| **venture** | per venture-instance (Webrnds, Djin-tenant, tweede instance); lijst wisselt per instance | via instance-root `AGENTS.md`; lijst bekend bij instance-bootstrap |
+| **klant** | per klant binnen een venture; lijst groeit met klant-portfolio | via klant-prefix-resolver (Ronde 13-patroon: `resolveClientPrefix()`-stub); dynamisch |
 
-- **skills-hosting** (Q19+) — waar skills leven en via welk discovery-mechanisme callers ze vinden. Wacht op agent-topologie omdat skills naar agents verwijzen.
-- **Money-discipline** (Q20+) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op agent-mapping omdat Money-discipline wordt uitgevoerd door agents.
+De drie-lagen-keuze valt op A omdat de canonieke distinctie uit `decisions.md` (instance #1 Webrnds, instance #0 Djin-tenant, instance #2+ tweede instance door founder) dezelfde drie niveaus heeft. Audit is **geen** agent-laag maar een menselijke rol (Sunday-audit, U7) — geen actor-discriminator.
+
+## Open frontier — Ronde 11+
+
+Kandidaten die voortbouwen op Ronde 10 (agent-mapping topologie geland):
+
+- **skills-hosting** (Ronde 11+) — waar skills leven en via welk discovery-mechanisme callers ze vinden. Wachtte op agent-topologie (Ronde 10/Q19, geland); nu vrij om uit te werken.
+- **Money-discipline** (Ronde 12+) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op skills-hosting omdat Money-discipline via skills wordt uitgevoerd.
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
 - **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
 - **Failure-replay-mechanisme** — geïdentificeerd via `research/djinlabs-vs-5-layers-audit.md` (Simon Høiberg 5-lagen harness, laag 5). Audit-trail per write is logging, geen failure-library; replay-procedure bij eval-update of model-switch ontbreekt. Past in Ronde 10 of 11.
