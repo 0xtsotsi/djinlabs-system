@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-5 locked. Ronde 6 open.
+> **Status.** Ronde 1-6 locked. Ronde 7 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -25,8 +25,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 3 | Cost-centre + ICM/Jev + 8 universals | Prijsmodel, Jev-laag, de 8 hard-rules hieronder |
 | 4 | Wie is de tweede instance | Founder beslist, eigen tempo, niet klant-getrokken |
 | 5 | Welke agent + welke architectuur voor tweede Jev-wire-up | `/money` (Q13-A) via `writeWrapper` (Q14-A); fail-CLOSED in tegenstelling tot Q10/U3 |
+| 6 | Money-subdirectories: wél vs niet afgeleid | Drie derivates (`Bank`, `Factuur`, `Belasting`); `Offerte` pass-through; `_internal/` hard-excluded; namen in NL |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 6+ (score-grader, post-HOLD, Ronde 14+ uit `decisions.md`) staat onderin deze doc bij "Open frontier — Ronde 6+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 7+ (score-grader, post-HOLD, Ronde 14+ uit `decisions.md`) staat onderin deze doc bij "Open frontier — Ronde 7+".
 
 ## Termen
 
@@ -175,11 +176,26 @@ Webrnds (zie `decisions.md` §"Canonical Webrnds tree") is instance #1 van deze 
 ### Instance-bootstrap (Q9) — cross-reference
 Zie §"Instance-bootstrap (Q9)" eerder in deze doc voor de volledige stappen. Cross-reference hier; niet duplikken om de A1-stijl te bewaren.
 
-## Open frontier — Ronde 6+
+### Money-subcats (Q15)
+writeWrapper-vangst (Q14-A) toegepast op `Money/`-paden. Drie **wrapped** derivates, één **pass-through**, één **hard-excluded**:
 
-Kandidaten die voortbouwen op Ronde 5:
+| Pad | Regime | Reden |
+|---|---|---|
+| `Money/Bank/` | wrap | transacties 5-20/dag, audit-waardig |
+| `Money/Factuur/` | wrap, strak | uitgaand + inkomend, BTW-relevant |
+| `Money/Belasting/` | wrap, strak | BTW/IB/VPB-aangiften, hoge impact per write |
+| `Money/Offerte/` | pass-through | pre-factuur, geen geldstroom, geen BTW-post |
+| `Money/_internal/` | hard-excluded | recursie-blokkade (audit-output kan zichzelf niet vangen) |
 
-- **Money-subdirectories** als derivates — `Money/Bank/`, `Money/Invoice/`, `Money/Belasting/`. Eén regel per subdir in `derivates.registry`. Welke paden zijn *niet* afgeleid en dus pass-through?
+**Naam-conventie** (locked Q15): Money-subcats in het **Nederlands** (`Bank`/`Factuur`/`Belasting`/`Offerte`); `_internal/` blijft **Engels** vanwege Ronde 8/Q8.3 canon in `decisions.md`. Path-syntax: `target.startsWith('Money/${wrapped[i]}/')`, string-match, geen regex/glob.
+
+**Geen registry-bestand voorlopig** — pas zinvol bij > 5 derivates; nu hard-coded, vier paden totaal.
+
+## Open frontier — Ronde 7+
+
+Kandidaten die voortbouwen op Ronde 6:
+
 - **Audit-grader via Jev `Score`** — Q8 gebruikt deterministische checks. Parallel: Jev `Score` als tweede grader, of vervanging? (Risico: verborgen drift als Score divergéert van waarheid.)
 - **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
 - **Post-HOLD-werkverdeling** — als Q14 writeWrapper universiek wordt, hoe gedragen we ons bij mislukte `Choice` na HOLD? Auto-retry? Mens-ping? Scheduled re-review?
+- **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
