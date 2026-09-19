@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-10 locked. Ronde 11 open.
+> **Status.** Ronde 1-11 locked. Ronde 12 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-10 hebben vastgelegd
+## Canon in context — wat Ronde 1-11 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
@@ -30,8 +30,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunday-audit, HOLD=direct-ping; geen auto-retry |
 | 9 | Openings-vraag bredere-werk volgorde | agent-mapping eerst (Q18-A): skills-hosting verwijst naar agents, Money-discipline wordt uitgevoerd door agents — deps in de topologie dwingen deze volgorde af |
 | 10 | Agent-mapping topologie | Drie lagen canon / venture / klant (Q19-A): klant erft venture erft canon; eigenaarschap + discovery-mechaniek per laag |
+| 11 | Skills-hosting model | Hybride (Q20-C): canon-skills in canon-folder (immutable, symlinks); venture/klant-skills in flat registry met metadata {layer, scope, owner}; skills orthogonaal aan agents |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 11+ (skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier — Ronde 11+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 12+ (Money-discipline, failure-replay, slop-gate, state-machine) staat onderin deze doc bij "Open frontier — Ronde 12+".
 
 ## Termen
 
@@ -228,14 +229,25 @@ Drie lagen, strikte hierarchie (klant erft venture erft canon). Eigenaarschap + 
 
 De drie-lagen-keuze valt op A omdat de canonieke distinctie uit `decisions.md` (instance #1 Webrnds, instance #0 Djin-tenant, instance #2+ tweede instance door founder) dezelfde drie niveaus heeft. Audit is **geen** agent-laag maar een menselijke rol (Sunday-audit, U7) — geen actor-discriminator.
 
-## Open frontier — Ronde 11+
+### Skills-hosting model (Q20)
+Hybride: canon-skills in canon-folder (immutable, symlinks); venture/klant-skills in flat registry met metadata. Skills zijn **orthogonaal** aan agents — één skill kan meerdere agents bedienen (bv. `writeWrapper` voor meerdere Money-write-agents).
 
-Kandidaten die voortbouwen op Ronde 10 (agent-mapping topologie geland):
+| Skill-laag | Locatie | Mechaniek | Discovery |
+|---|---|---|---|
+| **canon** | `canon/` in `djinlabs-template/` | symlinks (immutable) | canon-symlink-laag; geen runtime-discovery |
+| **venture** | flat registry in instance-root | metadata `{layer: "venture", scope, owner}` | metadata-filter; wisselt per instance |
+| **klant** | via klant-prefix-resolver (Ronde 13) | flat registry, geindexeerd op klant-prefix | klant-prefix-resolver; dynamisch |
 
-- **skills-hosting** (Ronde 11+) — waar skills leven en via welk discovery-mechanisme callers ze vinden. Wachtte op agent-topologie (Ronde 10/Q19, geland); nu vrij om uit te werken.
-- **Money-discipline** (Ronde 12+) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op skills-hosting omdat Money-discipline via skills wordt uitgevoerd.
+Waarom hybride (en niet per-laag folder, flat-only, of agent-gekoppeld): canon-immutability verdient fysiek bewijs (geen runtime-interpretatie); venture/klant-skills wisselen per instance en zijn metadata-gedreven; skills zijn orthogonaal aan agents, dus agent-mapping is geen discovery-mechanisme voor skills.
+
+## Open frontier — Ronde 12+
+
+Kandidaten die voortbouwen op Ronde 11 (skills-hosting hybride geland):
+
+- **Money-discipline** (Ronde 12) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op skills-hosting omdat Money-discipline via skills wordt uitgevoerd.
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
 - **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
-- **Failure-replay-mechanisme** — geïdentificeerd via `research/djinlabs-vs-5-layers-audit.md` (Simon Høiberg 5-lagen harness, laag 5). Audit-trail per write is logging, geen failure-library; replay-procedure bij eval-update of model-switch ontbreekt. Past in Ronde 10 of 11.
+- **Failure-replay-mechanisme** — geïdentificeerd via `research/djinlabs-vs-5-layers-audit.md` (Simon Høiberg 5-lagen harness, laag 5). Audit-trail per write is logging, geen failure-library; replay-procedure bij eval-update of model-switch ontbreekt. Past in Ronde 12+.
 - **Slop-gate in skills-hosting** — deterministische check op AI-clichés (em-dashes, "not X but Y", mic-drop, buzzwords) als per-skill eval-classifier, niet als hard-rule. Wordt relevant zodra tweede instance (Q4.1) content genereert.
 - **Canonieke state-machine voor agent-workflows** — transitie-regel-patroon (S1 Reproduction → S2 Regression → S3 Implementation → S4 Review) als generiek patroon voor Jev-routing, support-flow en content-flow.
+- **Canon-skill-contract** — verplichte metadata-velden in flat registry (bv. `version`, `compat_layer`, `owner`) zodat canon-immutability en venture/klant-wisseling niet door elkaar lopen. Natuurlijke Ronde 12-vraag voortbouwend op skills-hosting (Q20-C).
