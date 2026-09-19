@@ -2,7 +2,9 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 4 locked. Ronde 1-3 = canon. Ronde 5 open.
+> **Status.** Ronde 1-4 locked. Ronde 5 open.
+>
+> **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
 > **Audience.** Founder + toekomstige agent die het systeem voor het eerst ziet.
 
@@ -10,7 +12,20 @@
 
 Eén folder per venture (het "1-folder systeem"). Iedere folder heeft `start.md` + `state.md`. Daarboven liggen 8 universele hard-rules, gehandhaafd door hot-path hooks (≤100ms, rot-rules) en een Sunday-audit (cold-path, quality-rules). Instances erven de canon via symlinks; nieuwe instances worden gecreëerd door `scripts/new-instance.sh`. Jev (TypeSafe `Noul`/`Choice`/`Score`) wordt stapsgewijs ingebracht, eerste wire-up in de hooks-laag op U3, achter een MCP-wrapper zodat callers één policy delen.
 
+De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-greep — **wordt bewust gecreëerd door de founder, op eigen tempo** (Q4.1, `decisions.md` §"Ronde 4 — who is the second instance"). Niet afhankelijk van Webrnds-klantenbestand.
+
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
+
+## Canon in context — wat Ronde 1-4 hebben vastgelegd
+
+| Ronde | Onderwerp | Wat deze doc eruit haalt |
+|---|---|---|
+| 1 | Wat Webrnds is + 1-folder canon | "Webrnds = instance #1" — symlink-erfenis, geen holding |
+| 2 | Folder-shape + rollen | AGENTS.md / start.md / state.md patroon, agent-mapping |
+| 3 | Cost-centre + ICM/Jev + 8 universals | Prijsmodel, Jev-laag, de 8 hard-rules hieronder |
+| 4 | Wie is de tweede instance | Founder beslist, eigen tempo, niet klant-getrokken |
+
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 5+ (agent-mapping, skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier".
 
 ## Termen
 
