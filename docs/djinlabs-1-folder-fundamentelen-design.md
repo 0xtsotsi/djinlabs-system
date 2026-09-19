@@ -27,7 +27,7 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 5 | Welke agent + welke architectuur voor tweede Jev-wire-up | `/money` (Q13-A) via `writeWrapper` (Q14-A); fail-CLOSED in tegenstelling tot Q10/U3 |
 | 6 | Money-subdirectories: wél vs niet afgeleid | Drie derivates (`Bank`, `Factuur`, `Belasting`); `Offerte` pass-through; `_internal/` hard-excluded; namen in NL |
 | 7 | Audit-grader: Jev `Score` ja/nee | Nee voor eerste wire-up — deterministisch blijft primary; Score pas als checks > 5 of diverge optreedt |
-| 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunny-audit, HOLD=direct-ping; geen auto-retry |
+| 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunday-audit, HOLD=direct-ping; geen auto-retry |
 
 Meer ronde-detail in `decisions.md` §"Decision log". Ronde 9+ (Ronde 14+ uit `decisions.md`, Money-meta) staat onderin deze doc bij "Open frontier — Ronde 9+".
 
