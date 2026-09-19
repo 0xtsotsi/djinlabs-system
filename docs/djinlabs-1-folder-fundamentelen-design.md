@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-7 locked. Ronde 8 open.
+> **Status.** Ronde 1-8 locked. Ronde 9 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-7 hebben vastgelegd
+## Canon in context — wat Ronde 1-8 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
@@ -27,8 +27,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 5 | Welke agent + welke architectuur voor tweede Jev-wire-up | `/money` (Q13-A) via `writeWrapper` (Q14-A); fail-CLOSED in tegenstelling tot Q10/U3 |
 | 6 | Money-subdirectories: wél vs niet afgeleid | Drie derivates (`Bank`, `Factuur`, `Belasting`); `Offerte` pass-through; `_internal/` hard-excluded; namen in NL |
 | 7 | Audit-grader: Jev `Score` ja/nee | Nee voor eerste wire-up — deterministisch blijft primary; Score pas als checks > 5 of diverge optreedt |
+| 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunny-audit, HOLD=direct-ping; geen auto-retry |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 8+ (post-HOLD, Ronde 14+ uit `decisions.md`, Money-meta) staat onderin deze doc bij "Open frontier — Ronde 8+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 9+ (Ronde 14+ uit `decisions.md`, Money-meta) staat onderin deze doc bij "Open frontier — Ronde 9+".
 
 ## Termen
 
@@ -201,11 +202,23 @@ writeWrapper-vangst (Q14-A) toegepast op `Money/`-paden. Drie **wrapped** deriva
 
 **Rollback-pad**: mocht deterministisch te smal blijken, volgende stap is **parallel** (Score naast, niet in plaats van) — nooit vervanger. Score-onder-de-deterministische-grader verliest mens-traceerbaarheid van de canon.
 
-## Open frontier — Ronde 8+
+### Post-HOLD-werkverdeling (Q17)
+Hybrid-routing per verdict — semantisch onderscheid tussen **twijfel** en **afwijzing**:
 
-Kandidaten die voortbouwen op Ronde 7:
+| Verdict | Doorrol | Routing |
+|---|---|---|
+| `APPROVE` | ja | audit-trail + geen ping |
+| `REJECT` | nee | write-body in `Money/_internal/holdings/<ts>.md`; **Sunday-audit-cadans** |
+| `HOLD` | nee | holdings-file + **directe ping** (Telegram/Slack) naar founder |
 
-- **Post-HOLD-werkverdeling** — als Q14 writeWrapper universiek wordt, hoe gedragen we ons bij mislukte `Choice` na HOLD? Auto-retry? Mens-ping? Scheduled re-review?
+**Geen auto-retry** in beide regimes — retry introduceert second-guessing van Jev `Choice`-verdict en wringt met Q13 fail-CLOSED.
+
+**Compositie van twee bestaande patronen** (Steroids-referentie: Deuz-SDK `examples/03-next-chat/` toont single-loop ping-and-wait voor de HOLD-route; batch-review-cron is de REJECT-route). DjinLabs-specifiek is de **verdict-gebaseerde routering** tussen deze twee — compositie, geen invention.
+
+## Open frontier — Ronde 9+
+
+Kandidaten die voortbouwen op Ronde 8:
+
 - **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
 - **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
