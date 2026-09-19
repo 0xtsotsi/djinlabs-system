@@ -85,3 +85,7 @@ logs/
 # gg coder agent runtime
 .gg/state/
 .gg/cache/
+
+# third-party skill source — loaded by skills-lock.json from
+# /Users/gogetta/Projects/grill-with-ui (see skills-lock.json entry)
+.agents/skills/grill-with-ui/

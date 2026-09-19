@@ -55,6 +55,13 @@
       "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
       "computedHash": "35e62aa423aaeab6a414bcac273f56dfb17802ef2334b41b6a3b00f28196c8cf"
     },
+    "grill-with-ui": {
+      "source": "jasonku09/grill-with-ui",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "b64f1c13fff41060a497e76141a29874f6d3a6b65ee1c4b8f21b491c7d31622c",
+      "localPath": "/Users/gogetta/Projects/grill-with-ui"
+    },
     "grilling": {
       "source": "mattpocock/skills",
       "sourceType": "github",
