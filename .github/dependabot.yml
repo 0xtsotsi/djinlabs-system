@@ -1,0 +1,18 @@
+version: 2
+
+# No package manifests (package.json, pyproject.toml, go.mod, Cargo.toml,
+# Gemfile, composer.json) were detected, so only GitHub Actions is tracked.
+# When you add a stack manifest in the repo root, append the matching
+# `package-ecosystem` block below and set `directory` accordingly.
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
+      - "ci"

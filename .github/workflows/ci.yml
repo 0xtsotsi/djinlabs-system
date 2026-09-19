@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: ["$default-branch"]
+  pull_request:
+    branches: ["$default-branch"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # No manifests (package.json, pyproject.toml, go.mod, Cargo.toml)
+      # were detected, so this project is treated as a static site with
+      # no build or test scripts. CI is intentionally a no-op until
+      # a stack manifest and scripts are added.
+      #
+      # When you add a stack, replace this step with the appropriate
+      # install + build + test sequence:
+      #
+      #   Node (pnpm):  pnpm/action-setup@v6
+      #                 actions/setup-node@v7  (cache: 'pnpm')
+      #                 pnpm install --frozen-lockfile
+      #                 pnpm run build
+      #                 pnpm test
+      #
+      #   Node (npm):   actions/setup-node@v7  (cache: 'npm')
+      #                 npm ci
+      #                 npm run build
+      #                 npm test
+      #
+      #   Python (uv):  astral-sh/setup-uv@v10
+      #                 uv sync
+      #                 uv run pytest
+      #
+      #   Go:           actions/setup-go@v7
+      #                 go build ./...
+      #                 go test ./...
+      #
+      #   Rust:         Swatinem/rust-cache@v2
+      #                 dtolnay/rust-toolchain@stable
+      #                 cargo build --locked
+      #                 cargo test --locked
+      - name: No build or test scripts defined
+        run: |
+          echo "No build or test scripts defined for this project."
+          echo "Add a stack manifest (package.json, pyproject.toml, go.mod, Cargo.toml)"
+          echo "with build/test scripts, then update this workflow."
