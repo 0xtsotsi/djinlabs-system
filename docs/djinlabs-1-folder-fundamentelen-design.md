@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-4 locked. Ronde 5 open.
+> **Status.** Ronde 1-5 locked. Ronde 6 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -24,8 +24,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 2 | Folder-shape + rollen | AGENTS.md / start.md / state.md patroon, agent-mapping |
 | 3 | Cost-centre + ICM/Jev + 8 universals | Prijsmodel, Jev-laag, de 8 hard-rules hieronder |
 | 4 | Wie is de tweede instance | Founder beslist, eigen tempo, niet klant-getrokken |
+| 5 | Welke agent + welke architectuur voor tweede Jev-wire-up | `/money` (Q13-A) via `writeWrapper` (Q14-A); fail-CLOSED in tegenstelling tot Q10/U3 |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 5+ (agent-mapping, skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 6+ (score-grader, post-HOLD, Ronde 14+ uit `decisions.md`) staat onderin deze doc bij "Open frontier — Ronde 6+".
 
 ## Termen
 
@@ -165,11 +166,11 @@ Webrnds (zie `decisions.md` §"Canonical Webrnds tree") is instance #1 van deze 
 
 **Belangrijk regime-onderscheid** (samenvatting van U1–U8 + Q10 + Q13):
 
-| Regel | Hot-path faal-default | Past bij |
-|---|---|---|
-| U1, U5, U6 (rot-rules) | hard-block, faalt-dicht | hot-path hooks |
-| U3 (quality) | warn, faalt-open (audit-pad vangt) | audit-path |
-| /money writes (capability) | HOLD, faalt-dicht | writeWrapper |
+| Regel | Pad | Faal-default | Regime |
+|---|---|---|---|
+| U1, U5, U6 (rot-rules) | hot-path hooks | hard-block, faalt-dicht | rot, capability |
+| U3 (quality) | audit-path | warn, faalt-open (audit-pad vangt) | quality |
+| /money writes (capability) | writeWrapper | HOLD, faalt-dicht | rot, capability |
 
 ### Instance-bootstrap (Q9) — cross-reference
 Zie §"Instance-bootstrap (Q9)" eerder in deze doc voor de volledige stappen. Cross-reference hier; niet duplikken om de A1-stijl te bewaren.
