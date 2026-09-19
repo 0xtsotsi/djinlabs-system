@@ -2,7 +2,7 @@
 
 > **Source of truth.** Dit document is de leesbare vertaling van `~/.grill-with-ui/sessions/Users-gogetta-Documents-djinlabs_system_design/20260919-133302/state.json`. State wordt geschreven door de agent; dit document wordt gegenereerd en gemerged via één sync-stap (Q12). De grill-session is de bron, dit is de lei.
 >
-> **Status.** Ronde 1-8 locked. Ronde 9 open.
+> **Status.** Ronde 1-9 locked. Ronde 10 open.
 >
 > **Sync-stijl.** A1 (register-achtig, `decisions.md`-toon, ~150 regels, cross-refs naar `research/`). Vastgelegd in `state.json::style.chosen`.
 >
@@ -16,7 +16,7 @@ De tweede instance die DjinLabs "echt" tot template maakt — niet tot holding-g
 
 Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference" (Ronde 7 item 3).
 
-## Canon in context — wat Ronde 1-8 hebben vastgelegd
+## Canon in context — wat Ronde 1-9 hebben vastgelegd
 
 | Ronde | Onderwerp | Wat deze doc eruit haalt |
 |---|---|---|
@@ -28,8 +28,9 @@ Dit is de **canon**. Anti-pattern: zie `decisions.md` §"Anti-pattern reference"
 | 6 | Money-subdirectories: wél vs niet afgeleid | Drie derivates (`Bank`, `Factuur`, `Belasting`); `Offerte` pass-through; `_internal/` hard-excluded; namen in NL |
 | 7 | Audit-grader: Jev `Score` ja/nee | Nee voor eerste wire-up — deterministisch blijft primary; Score pas als checks > 5 of diverge optreedt |
 | 8 | Post-HOLD-werkverdeling na mislukte Choice | Hybrid (Q17-D): APPROVE=doorrol, REJECT=Sunday-audit, HOLD=direct-ping; geen auto-retry |
+| 9 | Openings-vraag bredere-werk volgorde | agent-mapping eerst (Q18-A): skills-hosting verwijst naar agents, Money-discipline wordt uitgevoerd door agents — deps in de topologie dwingen deze volgorde af |
 
-Meer ronde-detail in `decisions.md` §"Decision log". Ronde 9+ (Ronde 14+ uit `decisions.md`, Money-meta) staat onderin deze doc bij "Open frontier — Ronde 9+".
+Meer ronde-detail in `decisions.md` §"Decision log". Ronde 10+ (skills-hosting, Money-discipline) staat onderin deze doc bij "Open frontier — Ronde 10+".
 
 ## Termen
 
@@ -215,10 +216,11 @@ Hybrid-routing per verdict — semantisch onderscheid tussen **twijfel** en **af
 
 **Compositie van twee bestaande patronen** (Steroids-referentie: Deuz-SDK `examples/03-next-chat/` toont single-loop ping-and-wait voor de HOLD-route; batch-review-cron is de REJECT-route). DjinLabs-specifiek is de **verdict-gebaseerde routering** tussen deze twee — compositie, geen invention.
 
-## Open frontier — Ronde 9+
+## Open frontier — Ronde 10+
 
-Kandidaten die voortbouwen op Ronde 8:
+Kandidaten die voortbouwen op Ronde 9 (agent-mapping eerst):
 
-- **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
+- **skills-hosting** (Q19+) — waar skills leven en via welk discovery-mechanisme callers ze vinden. Wacht op agent-topologie omdat skills naar agents verwijzen.
+- **Money-discipline** (Q20+) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op agent-mapping omdat Money-discipline wordt uitgevoerd door agents.
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
 - **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
