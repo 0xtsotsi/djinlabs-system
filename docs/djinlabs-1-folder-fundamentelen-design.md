@@ -224,3 +224,6 @@ Kandidaten die voortbouwen op Ronde 9 (agent-mapping eerst):
 - **Money-discipline** (Q20+) — richtlijnen voor Money-zonder-`_internal/`, sub-cat-structuur, lifecycle. Wacht op agent-mapping omdat Money-discipline wordt uitgevoerd door agents.
 - **Money-meta naast _internal/** — bv. `Money/meta/`, `Money/kasboek/`. Pas registeren zodra ze bestaan.
 - **Calibratie-pad voor Score** — zodra Q16-triggers actief worden, hoe meten we of Score 'klaar' is voor productie? R&D-trail apart van canon.
+- **Failure-replay-mechanisme** — geïdentificeerd via `research/djinlabs-vs-5-layers-audit.md` (Simon Høiberg 5-lagen harness, laag 5). Audit-trail per write is logging, geen failure-library; replay-procedure bij eval-update of model-switch ontbreekt. Past in Ronde 10 of 11.
+- **Slop-gate in skills-hosting** — deterministische check op AI-clichés (em-dashes, "not X but Y", mic-drop, buzzwords) als per-skill eval-classifier, niet als hard-rule. Wordt relevant zodra tweede instance (Q4.1) content genereert.
+- **Canonieke state-machine voor agent-workflows** — transitie-regel-patroon (S1 Reproduction → S2 Regression → S3 Implementation → S4 Review) als generiek patroon voor Jev-routing, support-flow en content-flow.
