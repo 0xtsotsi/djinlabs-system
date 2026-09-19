@@ -171,7 +171,7 @@ Webrnds (zie `decisions.md` §"Canonical Webrnds tree") is instance #1 van deze 
 | U3 (quality) | warn, faalt-open (audit-pad vangt) | audit-path |
 | /money writes (capability) | HOLD, faalt-dicht | writeWrapper |
 
-### Instance-bootstrap (Q9) — samenvatting
+### Instance-bootstrap (Q9) — cross-reference
 Zie §"Instance-bootstrap (Q9)" eerder in deze doc voor de volledige stappen. Cross-reference hier; niet duplikken om de A1-stijl te bewaren.
 
 ## Open frontier — Ronde 6+
