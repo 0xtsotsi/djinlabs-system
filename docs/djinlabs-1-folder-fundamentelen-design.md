@@ -158,11 +158,27 @@ Webrnds (zie `decisions.md` §"Canonical Webrnds tree") is instance #1 van deze 
 2. Agent genereert een diff-suggestie voor deze doc in een aparte PR/patch.
 3. Founder reviewt en commit — de doc is oordeelkundig gemerged, niet auto-overschreven.
 
-## Open frontier
+### Jev-wire-up in agents (Q13, Q14)
+- **Tweede wire-up** (Q13-A) zit in `/money` als Universal Verification op writes. Call-shape: `Choice("is deze write toegestaan onder {soort-write}?") → {verdict, rationale}` met drie uitkomsten: `APPROVE` / `REJECT` / `HOLD`. **fail-CLOSED** bij unreachable (in tegenstelling tot Q10/U3 fail-OPEN).
+- **Plaats** (Q14-A): decoratieve `writeWrapper` in `scripts/hooks/write-wrapper.mjs`. Eén intercept-punt voor alle agents; triggert via `target-path ∈ Money/*` of derivates (registry-bestand, niet hard-coded).
+- **Audit-trail**: `djinlabs/_internal/audits/writes/<YYYY-MM-DD>.ndjson` — real-time, apart van de Sunday-audit-cadans.
 
-Ronde 5+. Kandidaten die ik in jullie `SESSION-BRIEF.md` en `decisions.md` zie liggen:
+**Belangrijk regime-onderscheid** (samenvatting van U1–U8 + Q10 + Q13):
 
-- **Welke agent krijgt Jev als tweede?** (Q10 legde hooks vast; nu de agent-keuze.)
-- **Direct API of MCP voor tweede caller?** (Q11-mixed is toegestaan; per caller beslissen.)
-- **Audit-grade via `Score`?** (Q8 gebruikt nog deterministische checks; Jev `Score` als parallel grader.)
-- **Ronde 14+ uit `decisions.md`** (agent-mapping, skills-hosting, Money-discipline).
+| Regel | Hot-path faal-default | Past bij |
+|---|---|---|
+| U1, U5, U6 (rot-rules) | hard-block, faalt-dicht | hot-path hooks |
+| U3 (quality) | warn, faalt-open (audit-pad vangt) | audit-path |
+| /money writes (capability) | HOLD, faalt-dicht | writeWrapper |
+
+### Instance-bootstrap (Q9) — samenvatting
+Zie §"Instance-bootstrap (Q9)" eerder in deze doc voor de volledige stappen. Cross-reference hier; niet duplikken om de A1-stijl te bewaren.
+
+## Open frontier — Ronde 6+
+
+Kandidaten die voortbouwen op Ronde 5:
+
+- **Money-subdirectories** als derivates — `Money/Bank/`, `Money/Invoice/`, `Money/Belasting/`. Eén regel per subdir in `derivates.registry`. Welke paden zijn *niet* afgeleid en dus pass-through?
+- **Audit-grader via Jev `Score`** — Q8 gebruikt deterministische checks. Parallel: Jev `Score` als tweede grader, of vervanging? (Risico: verborgen drift als Score divergéert van waarheid.)
+- **Ronde 14+ uit `decisions.md`** — agent-mapping, skills-hosting, Money-discipline (het bredere werk, niet enkel de Jev-wire-up).
+- **Post-HOLD-werkverdeling** — als Q14 writeWrapper universiek wordt, hoe gedragen we ons bij mislukte `Choice` na HOLD? Auto-retry? Mens-ping? Scheduled re-review?
