@@ -2,8 +2,8 @@
 
 > Status: **cumulative decisions log**, not the final spec. Grilling at **Ronde 12 (Djin embedding in DjinLabs-Webrnds-Umbrella)**; canonical Webrnds tree is geland op disk; Djin is gespiegeld als eerste tenant via symlinks; X (Q6.2 trigger), merklaag, prijspunten, and agent-mapping (Q13) stay parked for the user.
 > Source of truth for everything we decided so far, including rounds that landed before the host-gate stall.
-> Last update: 2026-09-19.
-> Awaiting: nothing blocking. Ronde 13 opent met agent-mapping + skills-hosting + Money-discipline zodra user dat wil.
+> Last update: 2026-09-28.
+> Awaiting: T-03 herijking na Ronde 19 lock (motie 4). Frontiere-volgorde: T-03 (heropening) → T-04 → T-05 → T-06 → T-07 → T-08 → T-09 → T-10.
 
 ## TL;DR (decisions so far)
 
@@ -273,6 +273,100 @@ The grilling pauses here. When it resumes, the frontier is:
 - Djin embedding geland (2026-09-19): 15 symlinks + `tenants/djin/AGENTS.md` (61 regels) + Djin's `Context/context.md` umbrella-aware via append-only pointer-sectie.
 - Djin self-locating fix geland (2026-09-19): `getProjectRoot()` in `registry.ts` (incl. `realpathSync`-safety voor umbrella-symlinks); 6 callers bijgewerkt (`icm.ts`, `dispatcher.ts`, 3 agent-loops); `resolveClientPrefix()` stub in `config.ts`; `.env.example` regel toegevoegd. Canoniek principe: **Djin is vast, app wisselt.**
 
+
+## Cumulative log — Ronde 14-17
+
+Aanvulling 2026-09-24 (audit `audit-spoor/audit-2026-09-24-double-tree.md`, Drift A.0). Frontier-lijst boven Ronde 13 blijft ongewijzigd; hieronder alleen pad-pointers per Ronde zodat `decisions.md` de canonieke bron van frontier-status is en blijft.
+
+### Ronde 14 — 2026-09-19/20: jev-policy canon + retention-policy canon + handovers
+- `research/matt-pocock-custom-skills-proposal.md`
+- `research/djinlabs-blombies-fit-research.md`
+- Nieuwe canonieke files (in `_shared/`):
+  - `_shared/jev-policy-canon.md` (V1 → latere sync naar V1.5 in R17)
+  - `_shared/retention-policy-canon.md`
+  - `_shared/agent-discipline-canon.md`
+- Openstaand gat: `_shared/handovers/` (in canon beloofd, niet op disk) — aandachtspunt voor audit Candidate A.
+
+### Ronde 15 — 2026-09-20/21: state-formats canon (Markdown=knowledge, JSON=state)
+- Nieuwe canonieke file: `_shared/state-formats-canon.md`
+- ADR: `docs/adr/0001-state-formats-canon.md`
+- Design-doc: `docs/r15-f1-state-formats-design.md`
+- Implementation-plan (apart van design-doc): `docs/r15-f1-state-formats-plan.md` (20 tasks; zie audit §1.9 — niet verifiëerd in deze ronde)
+- Live-test artifacts: `research/jev-live-test-rapport.md`
+
+### Ronde 16 — 2026-09-21/22: sync-discipline (agent / elke Ronde / generator-only)
+- Nieuwe canonieke file: `_shared/sync-discipline-canon.md`
+- ADR: `docs/adr/0002-sync-discipline.md`
+- Design-doc: `docs/r16-f9-sync-discipline-design.md`
+- Visual: `docs/r16-f9-sync-discipline-visual.html` (zie audit §1.9 — niet verifiëerd)
+- Shadow-mode artefacten in `audit-spoor/`:
+  - `audit-spoor/ronde-17-sync-2026-09-21T22-22-06-554798Z.{json,md}`
+  - `audit-spoor/ronde-17-sync-2026-09-22T11-11-26-095397Z.{json,md}`
+- Shadow-mode rapport: `research/rondasync-shadow-mode-r17.md`
+
+### Ronde 17 — 2026-09-22/23: jev-policy V1.5, confidence bands, classify_jev, handovers preview
+- Sync: `_shared/jev-policy-canon.md` → V1.5 Ronde 17 sync (frontmatter regel 7)
+- Classificatie-test: `research/jev-icm-file-classification-test.md`
+- Skills-audits:
+  - `research/matt-typesafe-coding-agent-audit.md`
+  - `research/sharbel-skills-audit-2026-09-23.md`
+- Blueprint: `research/jev-treg-blombies-icm-integration-blueprint.md`
+
+### Frontier na Ronde 17 (open, accumulerend in research/ maar nog niet in deze cumulative log)
+- Ronde 18 prep: `research/r18-f0-design-doc-drift-inventarisatie.md`
+- Drift-detector (nieuw, deze audit-sessie): `research/r18-design-doc-drift-check.mjs`
+- Skills-actuele-trace (nieuw): `_shared/.agents-skills-lock.md`
+- Gap K (Jevons-clausule) + Gap L (selective compaction): wachten op canon-anker in `_shared/retention-policy-canon.md` — audit Candidate E.
+- Frontier U10-U16: open per r6 Q6.3 (zie audit Drift A.4); sync-discipline R16 actief sinds R16, dus dit is nu eerste Ronde waar ze kunnen landen.
+
+### Ronde 18 — 2026-09-27: OathDriven Coder PoC (ICM + Jev + read-only blobbies-bridge)
+- Plan: `/Users/gogetta/Documents/djinlabs_system_design/.gg/plans/r18-oathdriven-coder-poc.md` (approved)
+- Workspace: `~/oathdriven-coder/` met `gg-framework/` en `blobbies/` als clones.
+- Vier canonieke beslissingen:
+  1. **agent = Blob** — GG Coder en blombies hebben geen gedeelde agent-registry; ICM spiegelt canonieke kennis (Markdown), Blob-folders zijn runtime-state (JSON). Sync-discipline voorkomt drift.
+  2. **Dedicated-containment** — `~/.oathdriven-coder/icm/` (Markdown-only, canoniek) is een tweede silo, niet in `~/.blobbies/` of in `~/.gg/`.
+  3. **Bridge read-only in v1** — `@oathdriven/gg-blob-bridge` heeft geen setters. Drie enforcement-lagen: TypeScript-types (`test/readonly.test.ts`), grep-audit (`audit-spoor/r18-bridge-readonly-audit.md`), code-review-discipline. Geen write naar `~/.blobbies/` in deze Ronde.
+  4. **ICM-shadow voor Jev** — `classifyJev` draait in shadow mode v1; `default = fail-CLOSED`; geen `proceed_full` bij confidence < lower; geen TypeSafe-API-call in v1.
+- Sync: `_shared/icm-canon.md` → nieuwe §“Agent-as-Blob” (max 5 regels)
+- Audit: `audit-spoor/r18-oathdriven-coder-poc.md` + `audit-spoor/r18-bridge-readonly-audit.md`
+- Branch: `batch/oathdriven-coder-r18` (geen push naar default)
+- Drie disciplines die de tests bewijzen: walk-test-budget, fail-mode-CLOSED, read-only-bridge.
+- V1 buiten scope: echte TypeSafe-API-call, write naar `~/.blobbies/` (incl. `blob_set_state`, routine-control, skill-sync), multi-instance-selector, online skill-discovery.
+
+### Ronde 19 — 2026-09-28: DjinLabs zonder runtimes (6 moties)
+
+**Bron:** Darren via WhatsApp 24-sep 07:20 (Notion sync-pagina blocks 86-93), bevestigd 28-sep 09:37. Audit-spoor WEB-16.
+**Staging:** `djinlabs/_internal/experimenten/cos/research/2026-09-28-r19-staging-djinlabs-zonder-runtimes.md` (kanoniek-neutraal).
+
+- **Motie 1 — Geen runtimes in DjinLabs.** Vercel Eve, Adam/Convex, DjinLabs HQ en elke andere runtime, server, database of dashboard gaan uit de DjinLabs-architectuur. `multi-runtime-cos-design.md` wordt voor DjinLabs gearchiveerd (`.ARCHIVED-2026-09-28.md`, conform `sharbel-hermy-hq-adapter-design.ARCHIVED-2026-09-23.md`-conventie).
+- **Motie 2 — "Agent = folder" als harde regel.** Een agent is een map met platte bestanden (bijv. AGENT.md, skills/, memory/, state in Markdown/JSON). Geen agent die alleen in een runtime of database bestaat. Walk-test uit `_shared/icm-canon.md`.
+- **Motie 3 — COS herdefiniëren binnen die regel.** COS blijft de rol uit T-01 ("leest je inbox en stuurt elk bericht naar de juiste agent"), maar als folder-agent die door een bestaande agent-harnas (Hermes of Claude Code) wordt gelezen. Geen eigen runtime of service. T-02 Optie 5 (folder-auteur = baas, Jev = externe gate, herzien 2026-09-28) is in lijn met deze motie.
+- **Motie 4 — T-03 t/m T-10 herijken.** Ankers "multi-runtime" en "Vercel Eve" uit T-03. Routes als folder-verwijzingen. T-04 t/m T-10 controleren op runtime/queue/dashboard/database-aannames; herformuleren of vervallen. **Status 2026-09-28:** skeletons aangemaakt in `cos/tickets/` (T-04 t/m T-10); T-03 vraag-bestand `T-03-routes-vraag.txt` bevat nog runtime-references (Vercel Eve), heropening vereist runtime-vrije herformulering.
+- **Motie 5 — Eve + Convex (en eventueel Adam) worden een apart client-setup-patroon.** Optioneel referentie-patroon voor klantprojecten (Webrnds), los van DjinLabs-canon. Per klant een eigen besluit. Adam pas bij licentie.
+- **Motie 6 — Opruimen en stil zetten.** DjinLabs HQ-traject blijft gesloten. `/tmp/eve-test-scaffold` kan weg (bestaat niet op deze Mac). Sharbel-trail blijft gepauzeerd. Eve- en Adam-notes hernoemen naar `client-patroon-research/`.
+
+**Aanvullingen Darren 24-sep (block 94-99):**
+
+- Hermes is tot nu toe een gateway op Telegram; doel is één main Hermes op de Mac.
+- Open beslispunt (hoort bij moties): COS decision-flow vastleggen los van COS-runtime-vraag. Welke beslissingen neemt COS zelf, welke routeert hij, welke gaan naar Darren? **Niet in scope Ronde 19** — apart ticket.
+- Paperclip-research: open-source control plane voor AI-agents. **Botsing met motie 1** (paperclip is zelf een runtime). Notion block 102: "Botsing: paperclip is zelf een runtime en botst dus met motie 1". Block 115: "werk dit voorstel verder uit tegen icm-canon.md en de moties hierboven. Niets installeren van paperclip." — paperclip-onderzoek mag door **tegen** de moties, kanonieke adoptie is latere Ronde.
+
+**Geraakte files (kanoniek-neutrale staging-zone `cos/tickets/` + `cos/research/`):**
+
+- `cos/multi-runtime-cos-design.md` → `cos/multi-runtime-cos-design.ARCHIVED-2026-09-28.md` (motie 1)
+- `cos/tickets/T-03-cos-routes.md` — ankers C+D gemarkeerd voor archival/verval; vraag-bestand `T-03-routes-vraag.txt` runtime-vrij te herformuleren bij heropening
+- `cos/tickets/T-04-validatie.md` t/m `T-10-niet-doen.md` — skeletons aangemaakt, vragen uit wayfinder-map
+- `cos/tickets/README.md` — Ronde 19 implicaties-sectie toegevoegd
+- `cos/research/2026-09-28-r19-staging-djinlabs-zonder-runtimes.md` — staging-document (kanoniek-neutraal)
+
+**Nieuwe canonieke files (in latere Rondes):**
+
+- `webrnds/_shared/client-setup-patterns.md` — client-setup-patroon voor Eve + Convex (motie 5)
+- Eve + Adam notes hernoemen naar `client-patroon-research/` (motie 6)
+- `_shared/cyrillic-trigger-words.md` — Ronde-traject voor canonieke trigger-woord-lijst (uit deze sessie)
+- `cos/_shared/cos-architecture-canon.md` — komt pas na voldoende frontier-resolution (zie `cos/CONTEXT.md`)
+
+**Cyrillic-guard:** staging-document + alle tickets-files zijn geverifieerd op 0 Cyrillic homoglyphs via `cos/tools/cyrillic-guard.sh`. Pre-commit instructies: `bash djinlabs/_internal/experimenten/cos/tools/cyrillic-guard.sh decisions.md` → verwacht 0 hits, exit 0. Bij hits: `--fix` en opnieuw.
 
 ## Process notes
 
