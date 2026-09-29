@@ -1,0 +1,12 @@
+{
+  "_doc": "Ronde 18 — project-scoped MCP config for djinlabs_system_design. Loaded by MCP clients that walk up from cwd looking for .mcp.json. Secrets live in .gg/.env (gitignored, mode 0600); this file references a wrapper that sources it. Never embed tokens here. Path in `command` resolves relative to this file's directory.",
+  "mcpServers": {
+    "notion": {
+      "_doc": "Official Notion MCP server (npm: @notionhq/notion-mcp-server). Bearer auth is the only auth path Notion supports for personal/internal integrations; OAuth is reserved for public connections.",
+      "command": "./scripts/mcp-notion-wrapper.sh",
+      "args": [],
+      "env": {},
+      "transport": "stdio"
+    }
+  }
+}
