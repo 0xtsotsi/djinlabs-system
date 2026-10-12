@@ -116,6 +116,12 @@
       "skillPath": "skills/engineering/prototype/SKILL.md",
       "computedHash": "d3fc74689bd993e39c44bfae510d014eecffbeec2922764b065377fd1327c0f6"
     },
+    "refero-design": {
+      "source": "referodesign/refero_skill",
+      "sourceType": "github",
+      "skillPath": "skills/refero-design/SKILL.md",
+      "computedHash": "b39b8c1f87664b1b63c50f5e2bbe7586b08790101920c96d9bbf75fc3a2d5a61"
+    },
     "research": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -235,6 +241,63 @@
       "sourceType": "github",
       "skillPath": "skills/in-progress/writing-shape/SKILL.md",
       "computedHash": "0d0ac1150c4d65f8370ad194fc097ee17855247f6e5943d05f075806980e7401"
+    },
+    "notion-sync-page": {
+      "source": "hermes-agent/skills (built-in)",
+      "sourceType": "local",
+      "skillPath": "skills/notion-sync-page/SKILL.md",
+      "computedHash": "2af3f35d9f6efa42734316575822edb44dd211ac76ecd70c6971adae1d478729"
+    },
+    "hermes-background-poll": {
+      "source": "hermes-agent/skills (built-in)",
+      "sourceType": "local",
+      "skillPath": "skills/hermes-background-poll/SKILL.md",
+      "computedHash": "6ae56aa6657391cad745fb26b5db8513347c091841017eb11a33522b9a632f81"
+    },
+    "live-carousel": {
+      "source": "Jad M.H / live-carousel-skill.zip (via Skool of Drive)",
+      "sourceType": "zip",
+      "skillPath": "SKILL.md (in zip)",
+      "computedHash": "2aac100803d7374e8f8653f02dd6cf12a16fa0f2514c8cf61a0250ed86bb9808",
+      "auditNote": "research/bouncer-audit-live-carousel-2026-09-30.md",
+      "auditVerdict": "CLEAN",
+      "note": "Claude Code-skill voor motion-graphics carousels. Hermes-side installatie via pin-discipline vereist expliciete founder-go (sync-discipline 24-sep)."
+    },
+    "motion-studio": {
+      "source": "Jad M.H / motion-studio-skill.zip (via Skool of Drive)",
+      "sourceType": "zip",
+      "skillPath": "SKILL.md (in zip)",
+      "computedHash": "60876698b837313666a214a9bda2b553f69117231813644f101f6de9db4e40a9",
+      "auditNote": "research/bouncer-audit-jad-skills-v2-2026-09-30.md",
+      "auditVerdict": "CLEAN",
+      "note": "Claude Code-skill voor motion-graphics video (3 levels). Hermes-side installatie via pin-discipline vereist expliciete founder-go."
+    },
+    "niche-content-engine": {
+      "source": "Jad M.H / niche-content-engine.zip (via Skool of Drive)",
+      "sourceType": "zip",
+      "skillPath": "SKILL.md (in zip)",
+      "computedHash": "e9cadaee9994726aa9495a427afd14b7ed4b124aca6ffb9800b86acde45db2d1",
+      "auditNote": "research/bouncer-audit-jad-skills-v2-2026-09-30.md",
+      "auditVerdict": "CLEAN",
+      "note": "Pure prompt-discipline skill, geen executable code. Geschikt voor content-research."
+    },
+    "persa-short-editing": {
+      "source": "Jad M.H / persa-short-editing.zip (via Skool of Drive)",
+      "sourceType": "zip",
+      "skillPath": "SKILL.md (in zip)",
+      "computedHash": "656a40d883dccdf86dd60531109ec8d635a12e935f74f457a893b13691aff4a6",
+      "auditNote": "research/bouncer-audit-jad-skills-v2-2026-09-30.md",
+      "auditVerdict": "CLEAN",
+      "note": "Claude Code-skill voor talking-head short editing. RVM matte env + HyperFrames render."
+    },
+    "carousel-kit": {
+      "source": "Jad M.H / Carousel-Kit.zip (via Skool of Drive)",
+      "sourceType": "zip",
+      "skillPath": ".claude/skills/carousel/SKILL.md",
+      "computedHash": "a42ccb0b0fa688e1a47757f88008508ce0b53bca80f8c0681b7747065bec2186",
+      "auditNote": "research/bouncer-audit-jad-skills-v2-2026-09-30.md",
+      "auditVerdict": "CLEAN",
+      "note": "Claude Code-skill voor instagram carousels. Optional PAID features (kie.ai, 0x0.st, catbox) zijn user-opt-in met eigen API-keys."
     }
   }
 }
