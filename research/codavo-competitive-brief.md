@@ -1,112 +1,300 @@
-# Competitive Brief — codavo.nl
+---
+type: competitive-brief
+subject: Codavo (codavo.nl)
+relationship: directe concurrent van Webrnds
+reference_client: Gevel Helden — eerste Webrnds-klant, in ~/Documents/projects/gevelhelden/
+framing: Codavo wordt op eigen merken vergeleken. Gevel Helden is "extra context" om te tonen wat de Webrnds-template vandaag oplevert — NIET het onderwerp van de vergelijking.
+date: 2026-10-10
+status: eerste invulronde (secties 1-9 gevuld, open punten in §10)
+researcher: COS
+last_updated_by: COS, 2026-10-10 (na framing-correctie Commander)
+---
 
-## Research provenance
+# Codavo — concurrentie-brief
 
-| Field | Value |
-|---|---|
-| source_agent_id | `333fabd4` |
-| task_name | `codavo.nl competitive research` |
-| agent_name | `researcher` |
-| provider / model | `minimax` / `MiniMax-M3` |
-| collected_at | 2026-09-19 (Europe/Amsterdam) |
-| collected_via | `wait_agent(agent_ids=["333fabd4"], condition="all")` (terminal, `collected: true`) |
-| started_at | 2026-09-19T07:11:59Z |
-| elapsed_ms | `688 693` (~11m 29s) |
-| turn_count | `8` |
-| tool_use_count | `51` |
-| output_tokens | `6 533` |
-| child_session_path | `~/.gg/subagent-sessions/.../2026-09-19T07-11-59-936Z_d0cbe35e.jsonl` |
-| persistence | This file is a hand-written durable mirror of the agent's tool output. The agent session is the canonical source; if you need to re-verify any claim, re-spawn `researcher` with the same task or re-derive from the cited URLs. |
-| confidence | High for entity/pricing/tech-stack facts (verified across `/privacy`, `/terms`, `/blog/tech-stack`, view-source, EN mirror). Medium for the "weaknesses" framing — these are positioning inferences, not factual claims about Codavo. |
+> **Commander's originele framing** (uit eerdere versie van deze file, verbatim bewaard):
+> *"Codavo is een directe NL concurrent van Webrnds (eerste klant = Gevel Helden)."*
+> *"Codavo levert: 1) complete bedrijfssites met motion-rich elementen, 2) doorlopende SEO + SEA + content, 3) leadgeneratie via formulieren + chat."*
+> *"Webrnds levert: ... [TBD]"*
 
-> Purpose: positioning substrate for Webrnds vs Codavo. Not the Webrnds spec — only what Codavo is and where the wedge is.
+---
 
-## TL;DR
+## 1. Wie is Codavo?
 
-Codavo is a **one-person freelance engineering studio** in Rotterdam (trading name "Codavo", legal entity "S. Ligtvoet Eenmanszaak", KVK **42017531**, BTW **NL005438642B47**, registered 19-03-2026 per companyinfo.nl / SBI 62100 — ontwerpen van computerprogrammas) run by **Sjoerd Ligtvoet**, ex-Senior Integration Engineer at Eneco (7 years, API/Kafka). He sells **bespoke Nuxt+Supabase+Cloudflare websites, webapps and integrations** to Dutch MKB, plus a recurring **SEO/AI-visibility retainer ("Groei Pro")**. Real customers include Youri van Koppen Golf, Golfly (€99/m SaaS), Opairly (€10/m SaaS), The Skin Club, Van Maaren (in dev). His own productisation clause: client gets a discounted build, Codavo keeps platform IP, they go on to sell it as a SaaS (Golfly, Opairly).
+**Codavo B.V.** — KvK 90229808, gevestigd Jan Ligthartstraat 3, 3083 AM Rotterdam. Eerste blogpost op de site dateert van vóór 14 februari 2023.
 
-## Target customer
+**Type bedrijf**: full-service **web/online-marketing bureau**. Geen gevel-werk bedrijf — Codavo's site presenteert zich als agency die websites + doorlopende online marketing levert aan MKB. (De gevel-werk-tekst die op de homepage verschijnt is een showcase-klant, niet Codavo's eigen dienst.)
 
-Dutch **MKB and growing companies** — explicit verticals named on-site: technische organisaties, installatiebedrijven, logistieke dienstverleners, productiebedrijven, SaaS-teams, klinieken (see `website-laten-maken-rotterdam`, `software-voor-installatiebedrijven`). Specifically the **entrepreneur who has outgrown WordPress/Wix but doesn't need an agency**. Buyer signal: budget ≥ €2.5k, prefers "direct with the engineer."
+**Hoofdpropositie**:
+- "Webdesign dat werkt voor jouw bedrijf"
+- "Websites die klanten opleveren" — focus op meetbaar resultaat, niet op esthetiek
 
-## Offer + pricing (visible, excl. 21% BTW)
+**Doelgroep**: MKB in regio Rotterdam/Zuid-Holland, maar ook landelijk. Showcase-branches op de homepage: hotel, schoonmaak, loodgieter, schilder, **gevelrenovatie** (showcase-klant), en andere.
 
-| Tier | Price | Notes |
-|---|---|---|
-| Website | from **€2,500** one-time | hosting from €0/m |
-| Automation & Integrations | from **€2,000** | complete workflow €5,000 |
-| Custom Software / Platform | from **€5,000** | complete platform €10,000+ |
-| MVP | from **€5,000** + €0–20/m hosting | |
-| Hourly change work | **€125/h** per 15 min | |
-| Onderhoud subscription | **€175/m** | |
-| Groei subscription | **€400/m** | |
-| **Groei Pro subscription** | **from €1,500/m** | SEO + AI-visibility work executed, not advised |
-| AI-scan one-off | **€950** | |
+**Stack** (afgeleid uit robots.txt + paginabezoek):
+- **WordPress CMS** — `/wp-json/` en `/wp-admin/` disallowed in robots.txt (klassiek WP-signaal)
+- Yotpo voor review-verzameling
+- Trustoo integratie (reviews-scherm op homepage toont Trustoo-reviews)
+- Hosting: WP-typical (geen custom headers ontdekt)
 
-Side-products: **Golfly €99/m**, **Opairly €10/m** — Codavo retains platform IP, client got a build discount (`portfolio/golfly`).
+**Online presence**:
+- Blog actief sinds feb 2023, posts in mei 2023, april 2023, feb 2023 — **frequentie laag (~3 posts/jaar of minder)**, niet wekelijks bijgehouden
+- Trustoo reviews: **4.9/5, "42 reviews"** geciteerd (niet live geverifieerd)
+- Vacatures-pagina aanwezig — groei-end of filling-moeite? Niet duidelijk zonder vacature-content
+- Sitemap.xml **LEEG** (0 URLs in `<urlset>`) — ongebruikelijk voor een WP-site met content; mogelijk security-plugin blokkeert, of jonge site, of SEO-plugin uit
 
-## Tech stack (with evidence)
+## 2. Wat bieden zij?
 
-- **Nuxt 3 / Vue 3 + TypeScript + Tailwind** — view-source shows `<style id="nuxt-ui-colors">` (Nuxt UI), `/_nuxt/entry.TnRgNtoh.css` paths, and a `Nuxt Studio / Nuxt Content` claim for editorial sites.
-- **Supabase** (Postgres, Auth, RLS, Storage) — confirmed across `blog/tech-stack`, `portfolio/opairly`, `portfolio/youri-van-koppen`.
-- **Cloudflare** hosting + CDN — confirmed via privacy page verwerkers table and Cloudflare-edge URLs.
-- **Mollie / Stripe** (iDEAL-led), **Anthropic Claude** for the AI project advisor (`privacy` page), **ElevenLabs** for voice, **Resend** for email, **Plausible Analytics**.
-- **Subdomain `app.codavo.nl`** = the Klantportaal Codavo runs on its own product (point-and-click feedback, walkthroughs, uptime, invoices, Groei Pro dashboard).
-- `robots.txt`: `@nuxtjs/sitemap v8.3.0`, `ai-train=no`, `ai-train=n` headers.
+**Hoofdcategorieën** (uit homepage-nav + sectie "Onze Diensten"):
+1. **Webdesign** — complete bedrijfssites (basisaanbod)
+2. **SEO** — doorlopende zoekmachine-optimalisatie
+3. **SEA** — betaalde advertenties (Google Ads)
+4. **Content** — blogs, teksten, foto/video
+5. **Leadgeneratie** — formulieren + chat-integratie
+6. **Diensten op maat** — alle branches
 
-## Positioning language (Codavo's own words, quoted)
+**Pricing-model** (van homepage + /diensten):
+- **3 pakketten**: Starter, Business, Premium (features verschillen per pakket, exacte prijzen op /tarieven — **niet opgehaald in deze ronde**)
+- Eenmalig tarief voor site-bouw
+- Doorlopende contracten voor SEO/SEA/content (typisch NL bureau-model)
 
-- *"Software that takes recurring work off your hands"* (`/en` H1)
-- *"You work directly with me. No layers in between."*
-- *"AI-accelerated building: live in weeks, without agency overhead."*
-- *"No templates, no standard solutions — but software that does exactly what your business needs"* (`/en/about`)
-- *"No account managers, no juniors who 'pick it up'"* (LinkedIn-style snippet on homepage)
-- *"Eerlijke belofte: gegarandeerde vermeldingen in AI-antwoorden bestaan niet"* (`ai-zichtbaarheid`)
-- Anti-WordPress, anti-Wix, anti-agency — three separate comparison pages (`/vergelijk/templates`, `/vergelijk/agencies`, `/vergelijk`).
+**Proces** ("Onze Werkwijze", 5 stappen):
+1. Kennismaking (intake + doelen)
+2. Strategie & Wireframing (sitemap + structuur)
+3. Design (visueel ontwerp)
+4. Ontwikkeling (bouw)
+5. Lancering & Nazorg (live + onderhoud)
 
-## Strengths
+**Branches** (sectoren die Codavo expliciet bedient): hotel, schoonmaak, loodgieter, schilder, **gevelrenovatie (showcase)**, en "alle branches op maat".
 
-1. **Real shipped work**, not stock photos — five public cases with live URLs, including two SaaS spin-offs.
-2. **End-to-end service** under one roof: marketing site → intake → payments → portal → dashboards → SEO/AI retainer.
-3. **Self-hosted client portal** (`app.codavo.nl`) is dogfooded — every customer gets point-and-click change requests, walkthroughs, uptime, monthly report.
-4. **Honest economics** — publicly admits AI-visibility can't be guaranteed; transparent tiered pricing.
-5. **"Productisering" clause** is distinctive: client gets a discounted build, Codavo keeps platform IP, they go on to sell it as a SaaS (Golfly, Opairly).
+## 3. Hoe presenteren zij zich?
 
-## Weaknesses / blind spots Webrnds can exploit
+**Positionering**:
+- "Webdesign dat werkt voor jouw bedrijf" — resultaatgericht
+- "Geen mooie praatjes, maar websites die klanten opleveren" — anti-esthetisch agency-speak
+- "Geen verkooppraat" + "transparant" + "persoonlijk" — return-to-craft narrative
+- "Klein team = persoonlijke aandacht" — boutique-positionering
 
-1. **Single-tenant by definition** — bus factor of 1, no team page, no agency bench. Liability capped at **€10,000 per event** (`terms §14.2`).
-2. **No decision/ICM layer under the UI.** Every page sells "scopes + screens + integrations." Nothing about Codavo's stack treats business rules, schemas, or workflows as a first-class, reusable, versioned artifact. A 1-folder company system with a TypeSafe/Jev decision layer sits *under* the presentation, not alongside it.
-3. **Service-page templates are near-identical** — same 3-card "what you get", same 18-logo integration grid, same 4-step process on every one of `website-laten-maken-rotterdam`, `dashboard-laten-bouwen`, `klantportaal-laten-bouwen`, `software-voor-installatiebedrijven`, `ai-integraties`, etc. It reads as a personal-brand site, not a platform with compounding assets.
-4. **Tooling is the same Nuxt+Supabase+Cloudflare default** the indie-dev market is saturated with. His own admission: *"Dezelfde stack werkt voor alles"* — there is no opinion about *why this shape of architecture* beyond "AI makes me fast."
-5. **"You own the code" is partly caveated** (`terms §12.3`) — generic components, frameworks, libraries stay his. Real portability of a Codavo project to another engineer is unproven.
-6. **Recurring revenue is services, not product.** Groei Pro is executed SEO work, not software. Golfly/Opairly are side bets, not the core offer.
-7. **Pricing is project-shaped, not company-shaped** — every engagement starts with a 30-min call + a quote; nothing "self-serve", no starter template that compounds into a system.
-8. **Zero third-party reputation surface** — no Trustpilot, no Clutch, no LinkedIn company page surfaced in search; only one public Google review (Youri's). On-site testimonials are portfolio-flavoured.
-9. **Installatiebedrijven / logistiek are generic verticals** — anyone can write that page. The cases that are *specific* (au pair, golf, kliniek) are one-offs, not a domain Codavo owns.
-10. **Hours-billed maintenance (€125/h per quarter)** is legacy-agency thinking — incompatible with a "system that compounds" pitch.
+**Visuele stijl** (uit web_fetch — text-only):
+- Klassiek agency-template: hero → diensten-grid → werkwijze → tarieven → branches → reviews → blog → CTA
+- Veel sectieblokken, klassiek scroll-pattern
+- Conversie-elementen: telefoonnummer prominent, "Offerte aanvragen" knop herhaald, Trustoo-reviews als bewijs
 
-## Wedge for Webrnds
+**Copy-toon**: direct, MKB-vriendelijk, resultaat- en prijs-bewust. Geen jargon. Geen "digital transformation" praat. Anti-Esthetisch self-positioning.
 
-Codavo sells **scopes + screens + integrations on a freelance engineer's calendar**. Webrnds can position around three concrete differentials that are *evidence-backed by Codavo's own materials*:
+**Trust-elementen**:
+- 4.9/5 Trustoo reviews
+- "50+ bedrijven" claim
+- Testimonials van bestaande klanten (incl. namen + regio)
+- Branchevermeld "gevelrenovatie" prominent op homepage (showcase-klant)
 
-- **System under the UI, not alongside it.** Codavo has no typed decision layer; Webrnds does (ICM folder system + TypeSafe/Jev).
-- **Compounding assets, not project files.** Codavo's service pages are 10× near-identical templates; Webrnds' monorepo with workspaces means each new customer makes the next customer cheaper to serve.
-- **Bus factor > 1 by structure.** Codavo's liability cap of €10K/event and Terms §7.3 30-day stillstand clause are explicit tells; Webrnds' monorepo + workspace structure + DjinLabs template means continuity survives the founding engineer's availability.
+## 4. Onze equivalent (Gevel Helden) — wat hebben we?
 
-## Sources
+Gevel Helden is Webrnds' eerste klant, een gevel-werk bedrijf in Zuid-Holland (Rotterdam-Den Haag). De repo (`~/Documents/projects/gevelhelden/`) is het bewijs van wat de Webrnds-template vandaag oplevert. **Niet het onderwerp van de vergelijking met Codavo**, maar wel het zichtbare bewijs van Webrnds' capability.
 
-- `https://codavo.nl/` (home, NL)
-- `https://codavo.nl/en` (home, EN — pricing tiers)
-- `https://codavo.nl/about`, `https://codavo.nl/en/about`
-- `https://codavo.nl/websites`, `https://codavo.nl/platforms`, `https://codavo.nl/mvp-laten-maken`
-- `https://codavo.nl/website-laten-maken-rotterdam`, `https://codavo.nl/webapplicaties-rotterdam`, `https://codavo.nl/webapplicaties`
-- `https://codavo.nl/dashboard-laten-bouwen`, `https://codavo.nl/klantportaal-laten-bouwen`, `https://codavo.nl/workflow-automatisering`
-- `https://codavo.nl/website-met-api-koppeling`, `https://codavo.nl/ai-integraties`, `https://codavo.nl/ai-zichtbaarheid`
-- `https://codavo.nl/software-voor-installatiebedrijven`, `https://codavo.nl/website-onderhoud`
-- `https://codavo.nl/portfolio`, `…/youri-van-koppen`, `…/golfly`, `…/opairly`, `…/the-skin-club`, `…/van-maaren`
-- `https://codavo.nl/blog`, `…/tech-stack`, `…/opairly-case-study`, `…/saas-mvp-bouwen`, `…/twee-producten-een-niche`
-- `https://codavo.nl/vergelijk`, `…/templates`, `…/agencies`
-- `https://codavo.nl/faq`, `https://codavo.nl/contact`, `https://codavo.nl/tools/website-kosten-calculator`
-- `https://codavo.nl/privacy`, `https://codavo.nl/terms` (entity name, KVK, BTW, liability cap)
-- `https://codavo.nl/robots.txt`, `https://codavo.nl/__sitemap__/nl-NL.xml`, `https://app.codavo.nl/groei-pro`
-- `https://companyinfo.nl/organisatieprofiel/ontwerpen-van-computerprogrammas/codavo-rotterdam-42017531-000065210115` (SBI62100 / ontwerpen van computerprogrammas, registered 19-03-2026)
+**Tech-stack** (uit de repo):
+- **Static HTML** op root-niveau (geen CMS, geen framework)
+- 9 hoofdpagina's + 5 diensten-subpagina's = 14 unieke HTML-bestanden
+- Vite + React + TS subproject (`web/`) bouwt de **coss** JS-bundle
+- `wire.mjs` (custom Node script) injecteert coss in elke HTML, vervangt `<header class="nav">` en formulieren door mount-divs
+- `serve.mjs` — 75 regels Node static server op 127.0.0.1:8765, geen deps
+- `skills-lock.json` — pinned coss skill, versie 1, hash vastgelegd
+- `relume-prompt.md` — 14-page AI-sitemap-prompt, compacte vorm (~4400 chars)
+- `plan.json` — 7-slide carousel-plan voor social ads
+
+**Inhoud & merk**:
+- Volledige 5-discipline gevel-werk site (renovatie, metselwerk, voegwerk, betonreparatie, reiniging) — matcht Codavo's showcase-gevel-werk niche
+- Brand: Gevel Helden (yellow #f7bd03, brown #845c02, type: Big Shoulders / Archivo / Martian Mono)
+- Regio: Zuid-Holland, focus Rotterdam-Den Haag
+- Telefoon: 06-21180071
+- SEO-titel: "Gevelhelden — Sterk in gevel | Gevelwerk Zuid-Holland"
+
+**Motion-elementen** (onderscheidend):
+- `.carousel/` — actief motion-design project (7-13 okt, 7.7KB STYLES.html, venv-symlink naar /tmp/carousel-proefrit/.venv)
+- `ad-social-v1/` — 14 snapshots, 3 renders voor social ads
+- coss-bundle wired door wire.mjs in elke HTML-page
+
+**Template-discipline** (uit de Webrnds venture repo):
+- **6-fasen pipeline**: 01-research, 02-offer, 03-market, 04-close, 05-produce, 06-na-livegang
+- Per-klant: `clients/<slug>/start.md`, `state.md`, `_rules.local.md`, `_agents/`, `klantreis-<id>/`
+- `_rules.local.md` + `_templates/` — instance-cap autoriteit
+- `.gg/` — GG workflow intern (commands, plans, skills, screenshots, uploads, agents)
+
+**Kort-door-de-bocht Webrnds-shape**:
+- Static + JS-bundle (lijnrecht tegenover Codavo's WordPress)
+- AI-sitemap via Relume-prompt (geen menselijke wireframe-sessie zoals Codavo's stap 2)
+- Motion/carousel ingebakken in de template
+- 1-folder template (clients/<slug>/...) — intern proces-discipline wat Codavo niet laat zien
+
+## 5. Wat missen wij? (gap analysis)
+
+Gap ten opzichte van Codavo's publieke propositie:
+
+| Onderwerp | Codavo | Webrnds | Status |
+|---|---|---|---|
+| Pricing tiers | 3 pakketten publiek | Geen publiek pricing | **GAP** — geen transparantie |
+| Werkwijze | 5 stappen publiek | 6-fasen pipeline intern | **GAP** — intern proces is niet marketing |
+| Blog | 3+ jaar actief, ~3 posts/jaar | /blog.html bestaat in Gevel Helden, **onduidelijk of gevuld** | **GAP** — content-cadans |
+| Reviews | Trustoo 4.9/5, 42 reviews | Geen review-platform zichtbaar | **GAP** — sociaal bewijs |
+| Doorlopende diensten | SEO + SEA + content contracten | Alleen site-bouw zichtbaar | **GAP** — geen retention-aanbod |
+| Multi-sector | "Elke branche" claim, 6+ showcases | Showcase = gevel-werk (1) | **POSITIONERINGSKEUZE** — focus of breedte? |
+| Tech-transparantie | WordPress (impliciet via robots.txt) | Static + Vite + coss | **EDGE** — lichter, sneller, AI-vriendelijker |
+| Motion/AI-sitemap | Niet zichtbaar | Relume-prompt + coss-bundle + carousel | **EDGE** — onderscheidend |
+
+**Gap-samenvatting**: Webrnds is **technisch en motion-wise verder** dan Codavo, maar mist de **marketing-/verkoop-laag** die Codavo wel heeft: transparante pricing, publiek werkwijze-verhaal, blog-cadans, review-platform, retention-aanbod.
+
+## 6. Concurrentie-analyse
+
+**Codavo's sterktes** (die Webrnds niet 1-op-1 kan kopiëren):
+- 3+ jaar blog-SEO en review-platform-investering (compound effect, niet in 1 sprint in te halen)
+- "Volwassen bureau"-uitstraling (Trustoo, vacatures, vaste proces-stappen) — vertrouwen-wekkend bij MKB
+- Multi-sector portfolio — kunnen lead-magnet zijn voor niches waar Webrnds nog niet is
+- Retention-contracten (SEO/SEA) — voorspelbare MRR na oplevering
+
+**Codavo's zwaktes** (die Webrnds kan uitbuiten):
+- **WordPress = zwaar**, traag, lastig te onderhouden, custom-template-fragiel
+- **Geen motion-first** aanpak — content is statisch met scroll-effecten
+- **Geen AI-sitemap** — handmatige wireframing in stap 2
+- **Geen portfolio van eigen "we build motion-sites"** — claim is generiek
+- Lege sitemap.xml — mogelijk SEO-zwakte (security-plugin of jonge site)
+
+**Webrnds' sterktes** (onderscheidend voor pitch):
+- **Motion-first**: carousel + coss-bundle is een echte portfolio-piece, niet "we kunnen ook animations"
+- **AI-sitemap**: Relume-prompt = 14 pagina's in seconden i.p.v. menselijke wireframe-sessie
+- **Static + JS-bundle**: lichter dan WordPress, sneller laad, makkelijker te hosten (geen DB, geen plugin-onderhoud)
+- **1-folder template**: schaalbaar naar meerdere klanten zonder "iedere klant = 6 weken werk"-vertraging
+- **GG workflow** (`.gg/`): interne samenwerking tooling die geen WordPress-implementatie nodig heeft
+
+**Webrnds' zwaktes** (tegen Codavo gepitcht):
+- Geen pricing = geen self-service lead-qualificatie (alles via intake)
+- Geen review-platform = geen sociaal bewijs bij eerste indruk
+- Geen blog = geen SEO-leadflow
+- Geen doorlopende diensten = geen MRR na oplevering (alleen eenmalig project)
+- Single-sector (gevel-werk) = smaller addressable market in jaar 1
+
+## 7. Implicaties voor de Webrnds template
+
+**1. Publieke "wat doen we"-laag** toevoegen aan de Webrnds-template:
+- `/_public/proces.md` of equivalent — 5-stap werkwijze in MKB-vriendelijke taal (naast de interne 6-fasen pipeline)
+- `/_public/tarieven.md` — 3 pakketten, of "op maat na intake" + telefoonnummer
+- `/_public/reviews.md` of Trustoo-equivalent integratie
+- Per klant een `/blog/index.html` discipline (of een Gevel-Helden-equivalent /blog.html dat ook echt gevuld wordt)
+
+**2. "Motion-first" als publieke propositie**:
+- Showcase-stuk: coss-bundle in actie + carousel-engine apart op portfolio-pagina
+- Pitch-zin: *"Wij bouwen motion-rijke sites met een AI-sitemap. Niet 6 weken wireframen — 14 pagina's in een middag."*
+
+**3. Retention-aanbod** (gap 4):
+- Na oplevering: maandelijks onderhoud + content-update + SEO-lite
+- Pitch: *"Site live is geen eindpunt, dat is het begin"*
+
+**4. Review-platform kiezen** (gap 3):
+- Trustoo (NL MKB), Klantenvertellen, of GitHub-style testimonials-pagina
+- Per klant: 1 review-pagina met embedded reviews + 5-sterren CTA
+
+**5. Gevel Helden als showcase-klant**:
+- De repo IS al het bewijs. Wat ontbreekt: een **publieke case-study-pagina** met screenshots + motion-demo + outcome-cijfers
+- Idee: `webrnds/_public/cases/gevelhelden.md` (of in Notion als projecthub-uitbreiding)
+
+**6. AI-sitemap als signature-feature**:
+- Relume-prompt mag prominenter. Niet "we gebruiken Relume" — wel: *"14 pagina's in seconden. Jij reviewt. Wij bouwen."*
+
+**7. Stack-keuze expliciet maken in pitch**:
+- "Geen WordPress, geen plugins die kapot gaan bij elke update"
+- "Static + JS-bundle = page-speed 95+, geen database, geen security-patches"
+
+## 8. Aanbevelingen
+
+### Korte termijn (1-2 weken, parallel aan W-01 validatie)
+
+1. **Publieke tarief-pagina** op de Webrnds-template (3 pakketten of "na intake"). Forceert Webrnds om eigen pricing-theorie te expliciteren — anders kan het niet tegen Codavo's transparantie op.
+2. **Showcase-casus Gevel Helden** schrijven: 1 pagina met (a) start-punt, (b) wat we leveren, (c) wat het opleverde, (d) motion-demo. Dit is Webrnds' eerste portfolio-stuk en moet vóór de tweede klant af zijn.
+3. **Webrnds' eigen site** (in de djinlabs mono-repo of als `webrnds-website`): 5-stap werkwijze + 3 pakketten + 1 showcase (Gevel Helden) + blog-placeholder. Zelfde template-discipline als klanten.
+
+### Middellange termijn (1-3 maanden)
+
+4. **Blog-discipline** starten op Gevel Helden: 1-2 posts/maand over gevel-werk (kennisbank — niet agency-praat). Eerste 6 posts in pipeline.
+5. **Retention-aanbod** ontwerpen: SEO-lite + content-update + hosting + monitoring. Pitch-pagina + pricing.
+6. **Review-platform kiezen en integreren** — Trustoo is meest logisch voor NL MKB.
+
+### Lange termijn (3+ maanden)
+
+7. **Multi-sector uitbreiding** overwegen — alleen als de template bewezen schaalbaar is. Eerste target niches: naast gevel-werk: schilder, loodgieter, schoonmaak (zelfde MKB-patroon, dezelfde B2B-zoekintentie).
+8. **GG workflow als publiek verkoopargument** — toon hoe interne discipline de klant-snelheid verhoogt (kostenplaatje, doorlooptijd-cijfers).
+
+### Anti-aanbevelingen (niet doen)
+
+- ❌ Probeer niet Codavo's hele agency-model te kopiëren (SEO/SEA/content/chat). Dat is een andere bedrijfscategorie — Webrnds wordt dan een nummer-2-Codavo.
+- ❌ WordPress adopteren "omdat de klant dat wil" — ondermijnt het motion-first en AI-sitemap verhaal, en laat de tech-edge verdwijnen.
+- ❌ Blog forceren zonder dat er iemand eigenaar is van het schrijven — lege blogs zijn erger dan geen blog.
+- ❌ Multi-sector proberen voordat de template bewezen is in 1 sector — schaal werkt pas als de discipline staat.
+
+## 9. Bronnen
+
+### Codavo (live site, 2026-10-10 opgehaald)
+
+- `https://codavo.nl/` — homepage (volledig gelezen, alle secties)
+- `https://codavo.nl/diensten/` — diensten-pagina (volledig gelezen)
+- `https://codavo.nl/sitemap.xml` — leeg (0 URLs in `<urlset>` — ongebruikelijk voor WP)
+- `https://codavo.nl/robots.txt` — bevestigt WordPress-stack (`Disallow: /wp-json/`, `Disallow: /wp-admin/`)
+- **Niet opgehaald in deze ronde**: /tarieven, /over-ons, /contact, /reviews, /blog/[posts], /vacatures, /seo, /sea, /webdesign, /werkwijze
+
+### Webrnds showcase (Gevel Helden, "extra context")
+
+- `~/Documents/projects/gevelhelden/` — Gevel Helden repo (static site + motion-engine + carousel-project + ad-carousel)
+  - `wire.mjs` — coss-bundle injection script
+  - `serve.mjs` — 75-regel static server op 127.0.0.1:8765
+  - `skills-lock.json` — pinned coss v1
+  - `relume-prompt.md` — 14-page AI sitemap
+  - `plan.json` — 7-slide carousel-plan
+  - 9 root-HTML + 5 diensten-sub = 14 unieke pagina's
+- Brand: yellow #f7bd03, brown #845c02, type Big Shoulders/Archivo/Martian Mono
+- Regio: Zuid-Holland (Rotterdam-Den Haag), tel 06-21180071
+
+### Webrnds venture (pipeline + template)
+
+- `/Users/gogetta/Documents/djinlabs_system_design/webrnds/` — Webrnds venture repo
+  - 6-fasen klantreis-pipeline: 01-research, 02-offer, 03-market, 04-close, 05-produce, 06-na-livegang
+  - `AGENTS.md` — venture-wide instructies
+  - `_templates/`, `_rules.local.md` — instance-cap autoriteit
+  - `.gg/` — GG workflow intern
+  - `clients/`, `skills/`
+
+### Notion
+
+- "Gevel Helden - projecthub" (3ea4c5f9-f8e5-81e3-b60e-f87b489922d0) — projecthub, audit/plan/tickets nog leeg
+
+### Commander's eigen framing (uit eerdere versie van deze file, verbatim)
+
+- "Codavo is een directe NL concurrent van Webrnds (eerste klant = Gevel Helden)."
+- "Codavo levert: 1) complete bedrijfssites met motion-rich elementen, 2) doorlopende SEO + SEA + content, 3) leadgeneratie via formulieren + chat."
+- "Webrnds levert: ... [TBD]" — nu ingevuld in §4 hierboven
+
+---
+
+## 10. Open punten (niet in deze ronde opgelost)
+
+- [ ] `/tarieven` exacte prijzen (3 pakketten, niet opgehaald)
+- [ ] `/over-ons` + `/reviews` — missen voor complete team-pitch
+- [ ] Trustoo-reviews live verifiëren (4.9/5, 42 reviews claim)
+- [ ] Gevel Helden publieke case-study (ontbreekt — korte termijn aanbeveling #2)
+- [ ] Webrnds eigen site (wel/niet bestaand?) — korte termijn aanbeveling #3
+- [ ] Gevel Helden `/blog.html` of `/blog` — gevuld of leeg? (gap-analyse §5)
+- [ ] Concurrenten-mapping naast Codavo: Trustoo zelf, Klantenvertellen, andere NL agencies in dezelfde niche
+- [ ] Brand-vergelijking (Codavo huisstijl vs. Gevel Helden huisstijl — alleen kleur/type, niet pixels)
+- [ ] Tarief-onderzoek: wat is marktconform voor static+Vite motion-site met AI-sitemap in NL MKB-markt?
+
+---
+
+## Status (alle 9 secties + bronnen + open punten)
+
+- [x] 1. Wie is Codavo?
+- [x] 2. Wat bieden zij?
+- [x] 3. Hoe presenteren zij zich?
+- [x] 4. Onze equivalent (Gevel Helden) — wat hebben we?
+- [x] 5. Wat missen wij? (gap analysis)
+- [x] 6. Concurrentie-analyse
+- [x] 7. Implicaties voor de Webrnds template
+- [x] 8. Aanbevelingen
+- [x] 9. Bronnen
+- [x] 10. Open punten (toegevoegd — was niet in Commander's originele TOC)
