@@ -3,7 +3,7 @@
 > Status: **cumulative decisions log**, not the final spec. Grilling at **Ronde 12 (Djin embedding in DjinLabs-Webrnds-Umbrella)**; canonical Webrnds tree is geland op disk; Djin is gespiegeld als eerste tenant via symlinks; X (Q6.2 trigger), merklaag, prijspunten, and agent-mapping (Q13) stay parked for the user.
 > Source of truth for everything we decided so far, including rounds that landed before the host-gate stall.
 > Last update: 2026-09-28.
-> Awaiting: T-03 herijking na Ronde 19 lock (motie 4). Frontiere-volgorde: T-03 (heropening) → T-04 → T-05 → T-06 → T-07 → T-08 → T-09 → T-10.
+> Awaiting: canonisatie R19 — `_shared/cos-architecture-canon.md` v0.1 (folder-canon) + `_shared/icm-canon.md` §Agent-as-Blob R19-sync. Frontier-volgorde cos: T-04 (deblokkeerd) → T-09 (deblokkeerd) → T-05 → T-06 → T-07 → T-08 → T-10.
 
 ## TL;DR (decisions so far)
 
@@ -367,6 +367,14 @@ Aanvulling 2026-09-24 (audit `audit-spoor/audit-2026-09-24-double-tree.md`, Drif
 - `cos/_shared/cos-architecture-canon.md` — komt pas na voldoende frontier-resolution (zie `cos/CONTEXT.md`)
 
 **Cyrillic-guard:** staging-document + alle tickets-files zijn geverifieerd op 0 Cyrillic homoglyphs via `cos/tools/cyrillic-guard.sh`. Pre-commit instructies: `bash djinlabs/_internal/experimenten/cos/tools/cyrillic-guard.sh decisions.md` → verwacht 0 hits, exit 0. Bij hits: `--fix` en opnieuw.
+
+### Pre-generator hand-edit Ronde T-05 (2026-10-08) — observatie-logs hint in `_shared/state-formats-canon.md`
+
+- **Bron:** T-05 R1 closure (`cos/tickets/T-05-state-model.md`, founder-bevestigd 2026-10-08, 5/5 tests passing).
+- **Hand-edit:** §Observatie-logs toegevoegd aan `_shared/state-formats-canon.md` (canoniek-uitbreiding-light) — toelating voor `cos/audit-spoor/dispatch-<date>.md` als kanoniek-neutraal observatie-log met retention-default `operationeel` + `canoniek`-override voor incident-files.
+- **Discipline:** pre-generator hand-edit per sync-discipline R16 §3 ("Hoe maken we drift onmogelijk?") — hand-edits zijn toegestaan tot de generator er is, mits vermeld in `decisions.md`.
+- **Open canonieke vraag voor latere Ronde:** of `state-formats-canon` uitgebreid moet worden met een derde bucket (`observatie` of `kanoniek-neutraal staging`). Tot die Ronde leven observatie-logs onder de §Observatie-logs-hint + retention-regime.
+- **Geraakte files (in dezelfde Ronde-sync-discipline-cyclus):** `_shared/state-formats-canon.md` (hint), `_shared/AGENTS.md` (cross-reference geverifieerd — verwijst al naar state-formats-canon.md), `cos/tickets/T-05-state-model.md` (closure).
 
 ## Process notes
 

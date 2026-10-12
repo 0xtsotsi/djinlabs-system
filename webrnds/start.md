@@ -2,6 +2,12 @@
 
 Wat Webrnds is en waar het naartoe gaat.
 
+> **Architectuur-lock (Ronde 19, 2026-09-28):** Webrnds is instance #1
+> van het DjinLabs-template. Geen runtimes in DjinLabs zelf. Eve +
+> Convex wordt optioneel Webrnds client-setup-patroon (motie 5), geen
+> DjinLabs-canon. Zie `decisions.md` (commit c1ebd5b) + venture
+> `Context/context.md`.
+
 ## Purpose
 
 Webrnds is de **uitvoerende onderneming** onder het DjinLabs-template. Het levert Codavo-shape diensten aan dezelfde doelgroepen als Codavo (Nederlands MKB in techniek, logistiek, SaaS, klinieken, etc.) — websites, webapps, klantportalen, API-koppelingen, AI-integraties, GEO/AI-vindbaarheid, SaaS MVP — tegen Codavo-comparabele prijzen.

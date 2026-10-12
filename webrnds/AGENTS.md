@@ -4,6 +4,7 @@ Onderneming #2: **klantreis-uitvoering**. Webrnds is de KVK-ingeschreven entitei
 
 ## Wat hier woont
 
+- **Entry + venture-context:** `README.md` + `Context/context.md` + `Context/map.md` (runtime-truth + één-scherm).
 - Werk-flow-pipeline: `01-research/` → `06-na-livegang/` (numbering = sequence matters).
 - Klant-folders onder `clients/<slug>/` met canonieke sub-shape.
 - Klant-spec agent-wrappers in `clients/<slug>/_agents/` (includeren Djin-agents universeel uit `/djinlabs/skills/`).
@@ -13,6 +14,8 @@ Onderneming #2: **klantreis-uitvoering**. Webrnds is de KVK-ingeschreven entitei
 
 | Task | Go to | Read |
 |------|-------|------|
+| Wat doet Webrnds, wat is de venture-context? | `Context/` | `context.md` (venture-truth) + `map.md` (één-scherm) |
+| Hoe zit Webrnds in de mono-repo? | `Context/map.md` (deze venture) + mono-repo `../Context/context.md` | context-flow |
 | Intake voor een nieuwe prospect | `01-research/` | `CONTEXT.md` |
 | Bouw een offerte | `02-offer/` | `CONTEXT.md` |
 | Run klantreis-fase X voor klant Y | `clients/<slug>/klantreis-<id>/<fase>/` | `CONTEXT.md` |
@@ -27,6 +30,8 @@ Onderneming #2: **klantreis-uitvoering**. Webrnds is de KVK-ingeschreven entitei
 - Experimenten → `/djinlabs/_internal/experimenten/`.
 - Hard-rules candidated draft → `/research/hard-rules-inventory.md`.
 - Canonieke bronnen → `/_shared/`.
+- Runtime-state-bestanden (JSON) — process-memory, niet hier. Zie `_shared/state-formats-canon.md` (Ronde 15).
+- Sync-discipline — bij elke wijziging in `webrnds/` (klantreis, _internal, _rules.local): check `_shared/sync-discipline-canon.md` of deze AGENTS.md-router + umbrella-router + design-doc mee gesynced moeten worden. Geen hand-edits zonder `decisions.md`-vermelding.
 
 ## ICM-discipline
 

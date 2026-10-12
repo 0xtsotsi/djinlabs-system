@@ -13,17 +13,34 @@ Onderneming #1: **template-onderhoud**. DjinLabs is geen KVK-ingeschreven entite
 
 | Task | Go to | Read |
 |------|-------|------|
+| Runtime-truth + één-scherm (mono-repo) | `/Context/` | `context.md` + `map.md` |
 | Werk aan een Djin-agents universeel | `/djinlabs/skills/<agent>/` | `SKILL.md` |
-| Log een experiment | `/djinlabs/_internal/experimenten/` | `CONTEXT.md` (nog niet aangemaakt) |
-| Schrijf een leer-artefact (Sunday-audit-uitkomst) | `/djinlabs/_internal/leer-artefacten/` | `CONTEXT.md` (nog niet aangemaakt) |
+| Log een experiment | `/djinlabs/_internal/experimenten/` | `CONTEXT.md` (parent) of `cos/CONTEXT.md` (voor COS-frontier) |
+| Schrijf een leer-artefact (Sunday-audit-uitkomst) | `/djinlabs/_internal/leer-artefacten/` | parent `CONTEXT.md` |
+| Werk aan COS-frontier (T-01..T-11) | `/djinlabs/_internal/experimenten/cos/` | `CONTEXT.md` + `wayfinder-map.md` + `tickets/` |
 | Update hard-rules candidated draft | `/research/hard-rules-inventory.md` | — |
-| Beslissing vastleggen | `/decisions.md` | — |
+| Beslissing vastleggen (Ronde) | `/decisions.md` | — |
+
+## Architectuur-lock (Ronde 19)
+
+DjinLabs is sinds 2026-09-28 (commit c1ebd5b) **runtime-vrij**:
+
+- Geen eigen server / queue / database / dashboard.
+- Agent = folder met platte bestanden.
+- COS = folder-agent (orthogonaal aan ventures en agents). Geen
+  COS-eigen runtime; autoriteit = folder-auteur + Jev als gate.
+- Eve + Convex = optioneel Webrnds-patroon, geen DjinLabs-canon.
+
+Zie mono-repo `AGENTS.md` (architecture-lock-sectie) + `_shared/cos-
+architecture-canon.md` (canonieke bron).
 
 ## Wat NIET hier zit
 
 - Klant-folders → horen in `/webrnds/clients/`.
 - Webrnds-specifieke R&D → hoort in `/webrnds/_internal/`.
 - Per-run artifacts van een klantreis → horen in `/webrnds/clients/<slug>/klantreis-<id>/<fase>/`.
+- Runtime-state-bestanden (JSON) — die horen in process-memory, niet hier. Zie `_shared/state-formats-canon.md`.
+- Sync-discipline — bij elke wijziging in `djinlabs/` (template-onderhoud, skills, _internal): check `_shared/sync-discipline-canon.md` of deze AGENTS.md-router + umbrella-router + design-doc mee gesynced moeten worden. Geen hand-edits zonder `decisions.md`-vermelding.
 
 ## ICM-discipline
 

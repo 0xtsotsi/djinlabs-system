@@ -7,6 +7,8 @@ Gedeelde waarheid voor alle ondernemingen in deze mono-repo (DjinLabs, Webrnds, 
 - `hard-rules.md` — de universele U-rules + per-instance contrast. Pointer naar `research/hard-rules-inventory.md` voor de candidated draft met provenance.
 - `naming-conventions.md` — slug-format, datestamps, status-frontmatter. Consistent over alle ondernemingen.
 - `icm-canon.md` — wat is een Record library, wat is Umbrella, de walk-test. Pointer naar de ICM-canon (`workflow-package-builder/references/icm-design-rules.md`) in de community-workflow-kit.
+- `cos-architecture-canon.md` — folder-canon voor COS (Chief of Staff), Ronde 19 lock. Definieert wat COS is als folder-agent, autoriteit (folder-auteur + Jev als gate), en routes bij eerste launch. Runtime-vrij; runtime-vragen leven in `djinlabs/_internal/experimenten/cos/wayfinder-map.md`.
+- `state-formats-canon.md` — Markdown = knowledge, JSON = state (Ronde 15 + §Observatie-logs hint 2026-10-08). Bepaalt welke file-soort in welke rol thuishoort; kent een nieuwe toelating voor kanoniek-neutrale observatie-logs (bv. `cos/audit-spoor/dispatch-<date>.md`).
 
 ## Wat NIET hier zit
 
