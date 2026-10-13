@@ -85,3 +85,13 @@ logs/
 # gg coder agent runtime
 .gg/state/
 .gg/cache/
+.gg/uploads/
+.gg/plans/
+
+# gg coder / DJinLabs cleanup 2026-10-13
+# Emmer A: env-files with secrets (nooit committen).
+.env-test/
+# Emmer C: workshop-output van Rondes 18-20 (taak-leveringen horen niet in canonieke repo).
+workshop/
+# Symlink naar een heel project in ~/Projects — niet als content committen.
+.agents/skills/grill-with-ui
